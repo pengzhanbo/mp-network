@@ -108,6 +108,22 @@ downloadPromise.onProgressUpdate((res) => {
 })
 ```
 
+**示例6： 请求拦截器**
+```js
+// 请求体拦截器
+request.interceptor.request.use((config) => {
+  // do something
+  // 必须返回 config
+  return config
+})
+request.interceptor.response.use((config) => {
+  // do something
+  
+  // 返回处理后的数据
+  return config.data
+})
+```
+
 ## Methods
 
 ### request
@@ -150,6 +166,13 @@ downloadPromise.onProgressUpdate((res) => {
 - `promise.offChunkReceived(listener)` 取消监听
 - `promise.onHeadersReceived(listener)`  监听 HTTP Response Header 事件
 - `promise.offHeadersReceived(listener)` 取消监听
+
+#### 拦截器
+
+- `request.interceptor` 拦截器
+  - `request.interceptor.request.use(fulfilled, rejected)` 请求体拦截器
+  - `request.interceptor.response.use(fulfilled, rejected)` 响应体拦截器
+
 
 ### upload
 
