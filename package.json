@@ -1,6 +1,6 @@
 {
   "name": "mp-network",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "小程序 网络请求接口二次封装， request/upload/download，适配多个平台",
   "keywords": [
     "miniProgram",
