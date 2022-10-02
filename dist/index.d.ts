@@ -401,7 +401,7 @@ declare const upload: Upload;
 
 declare type DownloadPromise = Promise<DownloadResponseOptions> & PlatformDownloadTask;
 interface Download {
-    (url: string, filePath: string, options: Omit<DownloadRequestOptions, 'filePath'>): DownloadPromise;
+    (url: string, filePath?: string, options?: Omit<DownloadRequestOptions, 'filePath'>): DownloadPromise;
 }
 declare function createDownload(uploadOptions?: Partial<DownloadRequestOptions>): Download;
 declare const download: Download;

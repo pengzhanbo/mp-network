@@ -300,7 +300,7 @@ var upload = createUpload();
 
 // src/download.ts
 function createDownload(uploadOptions = {}) {
-  return function(url, filePath, options) {
+  return function(url, filePath, options = {}) {
     const _option = deepMerge(
       { url, filePath },
       uploadOptions,
