@@ -1,0 +1,64 @@
+{
+  "name": "mp-network",
+  "version": "0.0.0",
+  "description": "小程序 网络请求接口二次封装， request/upload/download，适配多个平台",
+  "keywords": [
+    "miniProgram",
+    "network",
+    "request",
+    "miniProgram request",
+    "upload",
+    "download"
+  ],
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "build": "tsup",
+    "release": "bumpp package.json --commit --push --tag && pnpm publish --access public"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "sourcemap": false,
+    "dts": true,
+    "splitting": false,
+    "clean": true,
+    "format": [
+      "esm",
+      "cjs"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/mp-network.git"
+  },
+  "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/mp-network/issues"
+  },
+  "homepage": "https://github.com/pengzhanbo/mp-network#readme",
+  "prettier": "@pengzhanbo/prettier-config",
+  "devDependencies": {
+    "@pengzhanbo/eslint-config": "^0.1.4",
+    "@pengzhanbo/prettier-config": "^0.1.4",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.24.0",
+    "prettier": "^2.7.1",
+    "tsup": "^6.2.3",
+    "typescript": "^4.8.4"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "es2020",
+    "declaration": true,
+    "jsx": "preserve",
+    "lib": [
+      "DOM",
+      "ES2020"
+    ],
+    "target": "ES2018",
+    "skipLibCheck": true,
+    "strict": false,
+    "strictNullChecks": true,
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "newLine": "lf",
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "declarationMap": false,
+    "paths": {
+      "mp-network/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*", "demo/**/*"],
+  "exclude": ["node_modules"]
+}

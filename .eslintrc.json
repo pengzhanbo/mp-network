@@ -1,0 +1,14 @@
+{
+  "extends": "@pengzhanbo",
+  "globals": {
+    "wx": true,
+    "uni": true,
+    "my": true,
+    "swan": true,
+    "tt": true,
+    "qq": true,
+    "qh": true,
+    "ks": true,
+    "dd": true
+  }
+}
