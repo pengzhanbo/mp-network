@@ -23,6 +23,15 @@ function deepMerge(...sources) {
   return target;
 }
 
+// src/utils/combUrl.ts
+var httpPattern = /^([a-z][a-z\d+\-.]*:)?\/\//i;
+var isHttp = (url) => httpPattern.test(url);
+var combUrl = (baseUrl, url) => {
+  if (isHttp(url))
+    return url;
+  return url ? `${baseUrl.replace(/\/+$/, "")}/${url.replace(/^\/+/, "")}` : baseUrl;
+};
+
 // src/core/support.ts
 var platformList = [
   () => uni,
@@ -199,7 +208,10 @@ var MPRequest = class {
     return promise;
   }
   transformOptions(options) {
-    return deepMerge({}, this.options, options);
+    const _options = deepMerge({}, this.options, options);
+    _options.url = combUrl(this.options.baseUrl || "", options.url);
+    delete _options.baseUrl;
+    return _options;
   }
   get(url, data, options) {
     return this.request("GET", url, data, options);
@@ -233,8 +245,10 @@ function createUpload(uploadOptions = {}) {
     const _option = deepMerge({ url }, uploadOptions, options);
     _option.name = data.name;
     _option.filePath = data.filePath;
+    _option.url = combUrl(_option.baseUrl || "", _option.url);
     delete data.filePath;
     delete data.name;
+    delete _option.baseUrl;
     _option.formData = deepMerge(
       _option.formData,
       data
@@ -276,6 +290,8 @@ function createDownload(uploadOptions = {}) {
       uploadOptions,
       options
     );
+    _option.url = combUrl(_option.baseUrl || "", _option.url);
+    delete _option.baseUrl;
     const adapter = downloadAdapter(_option);
     const promise = adapter.promise;
     Object.assign(promise, {

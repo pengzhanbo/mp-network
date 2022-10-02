@@ -34,6 +34,11 @@ export type ResponseHeader = Record<string, HeaderValue>
  */
 export interface RequestOptions {
   /**
+   * 请求地址前缀
+   * @default ''
+   */
+  baseUrl?: string
+  /**
    * 超时时间。 单位： `ms`
    * @default 60000
    */
@@ -135,6 +140,11 @@ export interface ResponseError {
 
 export interface DownloadRequestOptions {
   /**
+   * 请求地址前缀
+   * @default ''
+   */
+  baseUrl?: string
+  /**
    * HTTP 请求的 Header
    */
   header?: RequestHeader
@@ -168,6 +178,11 @@ export interface DownloadResponseOptions {
 }
 
 export interface UploadRequestOptions {
+  /**
+   * 请求地址前缀
+   * @default ''
+   */
+  baseUrl?: string
   /**
    * 要上传文件资源的路径 (本地路径)
    */

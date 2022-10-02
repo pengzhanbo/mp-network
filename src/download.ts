@@ -1,7 +1,7 @@
 import { downloadAdapter } from './core/adapter'
 import type { PlatformDownload, PlatformDownloadTask } from './core/support'
 import type { DownloadRequestOptions, DownloadResponseOptions } from './types'
-import { deepMerge } from './utils'
+import { combUrl, deepMerge } from './utils'
 
 type DownloadPromise = Promise<DownloadResponseOptions> & PlatformDownloadTask
 interface Download {
@@ -21,6 +21,9 @@ export function createDownload(
       uploadOptions,
       options
     )
+
+    _option.url = combUrl(_option.baseUrl || '', _option.url)
+    delete _option.baseUrl
 
     const adapter = downloadAdapter(_option)
 

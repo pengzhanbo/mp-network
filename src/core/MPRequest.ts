@@ -4,7 +4,7 @@ import type {
   RequestOptions,
   ResponseOptions,
 } from 'mp-network/types'
-import { deepMerge } from 'mp-network/utils'
+import { combUrl, deepMerge } from 'mp-network/utils'
 import type { RequestAdapter } from './adapter'
 import { requestAdapter } from './adapter'
 import { Interceptor } from './Interceptor'
@@ -78,8 +78,13 @@ export class MPRequest {
     return promise as unknown as RequestPromise<ResponseOptions>
   }
 
-  private transformOptions(options: PlatformRequest): PlatformRequest {
-    return deepMerge<PlatformRequest>({}, this.options, options)
+  private transformOptions(
+    options: Omit<PlatformRequest, 'baseUrl'>
+  ): PlatformRequest {
+    const _options = deepMerge<PlatformRequest>({}, this.options, options)
+    _options.url = combUrl(this.options.baseUrl || '', options.url)
+    delete _options.baseUrl
+    return _options
   }
 
   public get(

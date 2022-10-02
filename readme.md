@@ -271,6 +271,7 @@ request.interceptor.response.use((config) => {
 
 ``` js
 const customRequest = createRequest({
+  baseUrl: 'http://example.com/',
   timeout: 60000,
   dataType: 'json',
   header: {
@@ -279,7 +280,7 @@ const customRequest = createRequest({
 })
 
 // 发起 post 请求
-customRequest.post('https://example.com/b', { b: 1 })
+customRequest.post('/b', { b: 1 })
   .then((response) => {
     console.log(response)
   })
@@ -293,11 +294,12 @@ customRequest.post('https://example.com/b', { b: 1 })
 
 ```js
 const customUpload = createUpload({
+  baseUrl: 'http://example.com/',
   timeout: 60000
 })
 
 // 上传文件
-customUpload('https://example.com/upload', { filePath: '/local/1.txt', name: '1.txt' })
+customUpload('/upload', { filePath: '/local/1.txt', name: '1.txt' })
   .then((response) => {
     console.log(response)
   })
@@ -311,10 +313,11 @@ customUpload('https://example.com/upload', { filePath: '/local/1.txt', name: '1.
 
 ```js
 const customDownload = createDownload({
+  baseUrl: 'http://example.com/',
   timeout: 60000
 })
 // 下载文件
-customDownload('https://example.com/download', 'local/1.txt')
+customDownload('/download', 'local/1.txt')
   .then((response) => {
     console.log(response)
   })
@@ -326,6 +329,7 @@ customDownload('https://example.com/download', 'local/1.txt')
 
 | 字段 | 类型 | 描述 |
 | --  | --  | -- |
+| baseUrl | string | 请求路径公共前缀 | 
 | timeout |number | 超时时间，单位为毫秒。默认值为 60000 |
 | header | object | 设置请求的 header |
 | dataType | string | 返回的数据格式 |
@@ -343,6 +347,7 @@ customDownload('https://example.com/download', 'local/1.txt')
 
 | 字段 | 类型 | 描述 |
 | --  | --  | -- |
+| baseUrl | string | 请求路径公共前缀 | 
 | timeout |number | 超时时间，单位为毫秒。|
 | header | object | 设置请求的 header |
 
@@ -350,6 +355,7 @@ customDownload('https://example.com/download', 'local/1.txt')
 
 | 字段 | 类型 | 描述 |
 | --  | --  | -- |
+| baseUrl | string | 请求路径公共前缀 | 
 | timeout |number | 超时时间，单位为毫秒。|
 | header | object | 设置请求的 header |
 | filePath | string | 要上传文件资源的路径 (本地路径) |
