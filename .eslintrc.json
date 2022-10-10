@@ -1,5 +1,5 @@
 {
-  "extends": "@pengzhanbo",
+  "extends": "@pengzhanbo/eslint-config-ts",
   "globals": {
     "wx": true,
     "uni": true,
